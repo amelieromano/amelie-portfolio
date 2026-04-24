@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rust: #B8456B;
+  --ochre: #E8907A;
+  --burgundy: #3D1028;
+  --cream: #F5E8EA;
+  --dusty-rose: #D4607A;
+  --sage: #4A5E3A;
+  --off-white: #FBF2F3;
+  --dark-brown: #2C101E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-jost), sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75;
+  background-color: var(--off-white);
+  color: var(--dark-brown);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Project alternating layout ── */
+.project-row {
+  display: flex;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  margin-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+.project-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.project-placeholder {
+  flex: 0 0 55%;
+  max-width: 55%;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-placeholder:hover {
+  transform: translateY(-8px);
+}
+
+.project-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Creative grid ── */
+.creative-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Nav links ── */
+.nav-link {
+  color: var(--dark-brown);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+  font-family: var(--font-jost);
+  font-weight: 400;
+}
+
+.nav-link:hover {
+  color: var(--rust);
+}
+
+/* ── Contact links ── */
+.contact-link {
+  color: var(--dark-brown);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.1rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+}
+
+.contact-link:hover {
+  color: var(--rust);
+  border-bottom-color: var(--rust);
+}
+
+/* ── CV button hover ── */
+.cv-pill {
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.cv-pill:hover {
+  transform: scale(1.03);
+}
+
+/* ── Hero buttons ── */
+.hero-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-btn:hover {
+  transform: scale(1.03);
+}
+
+/* ── Organic wave divider ── */
+.wave-divider {
+  display: block;
+  overflow: hidden;
+  line-height: 0;
+}
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .project-row,
+  .project-row.reverse {
+    flex-direction: column;
+  }
+
+  .project-placeholder {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .creative-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-mobile-cv {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
